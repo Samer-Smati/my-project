@@ -1,0 +1,44 @@
+import React from 'react'
+import {Nav,Navbar,Container, Button,NavDropdown} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
+function NavBar({student}) {
+    
+    return (
+        <div>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" fixed="top"> 
+                <Container>
+                <Navbar.Brand as={Link} to='/'><img className="logo" src="https://gomycodewebsite.blob.core.windows.net/website/img/black_Logo_342868e838_129748d4cd.svg" alt='logo' /></Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" /> 
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto"> 
+                    <Nav.Link href="/about">about us</Nav.Link> 
+                    </Nav>
+                    <Nav>
+                    {student.lastname ? 
+                        <div> 
+                            <NavDropdown title={`${student.lastname} ${student.firstname}`} id="basic-nav-dropdown">
+                                <NavDropdown.Item>
+                                    {student.lastname} {student.firstname} <br />
+                                    <span>{student.email}</span>
+                                </NavDropdown.Item> 
+                                <NavDropdown.Item>{student.number}</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.1">{student.formation}</NavDropdown.Item>
+                            </NavDropdown>
+                        </div>
+                     :    
+                        <div className="d-flex">
+                         <Nav.Link as={Link} to='/login' href="#deets"><Button variant="outline-danger">login</Button></Nav.Link>
+                         <Nav.Link as={Link} to='/signUp' href="#memes"><Button variant="outline-danger">SignUp</Button></Nav.Link>
+                        </div>
+                    } 
+        
+
+                    </Nav> 
+                </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </div>
+    )
+}
+
+export default NavBar
