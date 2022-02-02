@@ -1,18 +1,22 @@
 import React from 'react'
 
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {studentContent} from '../redux/action'
+import {studentContent,adminContent} from '../redux/action'
 function Index() {
     const dispatch = useDispatch()
     let history = useHistory();
-
-    const student = useSelector(state => state.students)
-    if(student.accessToken && student.roles[0] == 'ROLE_STUDENT'){
-        dispatch(studentContent(student.accessToken))
-        history.push('/student') 
+    const user = JSON.parse(localStorage.getItem('student'));
+    
+    if(user?.accessToken && user?.roles[0] == 'ROLE_STUDENT'){
+        dispatch(studentContent(user)) 
+        history.push('/student')   
     } 
-
+    if(user?.accessToken && user?.roles[0] == 'ROLE_SUPERADMIN'){
+        dispatch(adminContent(user))  
+        history.push('/admin')  
+    }
+    
     return (
         <div>
             <div className="home container-fluid"> 

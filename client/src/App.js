@@ -4,21 +4,29 @@ import SignUp from './auth/signUp'
 import Home from './HomePage/index'
 import NavBar from './HomePage/NavBar'
 import Student from './student/index'
-import {Switch,Route} from 'react-router-dom'
+import SuperAdmin from './admin/index'
+import {Switch,Route,useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import Menu from './admin/menu'
 
+import { useLocation} from "react-router-dom";
 function App() {
-
+  let history = useHistory();
   const student = useSelector(state => state.students)
-
-  return (
-    <div className="App">
-      <NavBar student={student} />
+  const user = JSON.parse(localStorage.getItem('student'));
+  if(user == null) {  
+    history.push('/')  
+  }
+  return ( 
+    <div className="App"> 
+      <NavBar student={user ? user : student} />
+      <Menu />
       <Switch> 
         <Route exact path="/" component={Home} /> 
         <Route path="/login" component={Login} />
         <Route path="/signUp" component={SignUp} />
-        <Route path="/student" component={Student} />       
+        <Route path="/student" component={Student} />
+        <Route path="/admin" component={SuperAdmin} />         
       </Switch>
     </div>
   );

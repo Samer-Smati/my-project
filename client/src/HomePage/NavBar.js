@@ -5,7 +5,7 @@ function NavBar({student}) {
     
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" fixed="top"> 
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light"> 
                 <Container>
                 <Navbar.Brand as={Link} to='/'><img className="logo" src="https://gomycodewebsite.blob.core.windows.net/website/img/black_Logo_342868e838_129748d4cd.svg" alt='logo' /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" /> 

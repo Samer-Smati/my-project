@@ -10,16 +10,6 @@ module.exports = function(app) {
     next();
   });
 
-  //app.get("/api/all", controller.allAccess);
-
-  //app.get("/api/user", [authJwt.verifyToken], controller.userBoard);
-
-  // app.get(
-  //   "/api/mod",
-  //   [authJwt.verifyToken, authJwt.isModerator],
-  //   controller.moderatorBoard
-  // );
- 
   app.get( 
     "/api/superadmin",
     [authJwt.verifyToken, authJwt.isAdmin],
@@ -43,5 +33,16 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isGestionaire],
     controller.gestionaireBoard
   );
-
+  app.get(
+    "/users",
+    controller.allUsers
+  );
+  app.post(
+    "/delete",
+    controller.deleteUser 
+  ); 
+  app.post(
+    "/updateUser",
+    controller.updateUser  
+  ); 
 };

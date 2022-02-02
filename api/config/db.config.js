@@ -1,5 +1,6 @@
 module.exports = {
-    HOST: "localhost",
-    PORT: 27017,
-    DB: "erpapp"
+    HOST: "samer",
+    password: 'azerty123',
+    DB: "myFirstDatabase"
   }; 
+

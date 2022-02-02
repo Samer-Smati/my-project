@@ -7,11 +7,11 @@ const Role = db.role;
 const dbConfig = require("./config/db.config")
 
 
-db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+db.mongoose  
+  .connect(`mongodb+srv://${dbConfig.HOST}:${dbConfig.password}@cluster0.hgywt.mongodb.net/${dbConfig.DB}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+    useUnifiedTopology: true  
+  }) 
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial()
